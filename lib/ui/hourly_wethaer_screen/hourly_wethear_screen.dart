@@ -66,7 +66,7 @@ class _HourlyWethearScreenState extends State<HourlyWethearScreen> {
                     getTimesTamp(widget.oneCallData.hourly[index].temp.toInt()),
                     style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 50,
+                        fontSize: 40,
                         fontWeight: FontWeight.w500),
                   ),
                   title: Text(

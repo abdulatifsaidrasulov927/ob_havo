@@ -79,7 +79,7 @@ class _ContryWethearDalyState extends State<ContryWethearDaly> {
                                 .toInt()),
                             style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 70,
+                                fontSize: 60,
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
@@ -87,7 +87,7 @@ class _ContryWethearDalyState extends State<ContryWethearDaly> {
                                 widget.oneCallData.daily[widget.index].dt),
                             style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: 10,
                                 fontWeight: FontWeight.w200),
                           ),
                         ],
