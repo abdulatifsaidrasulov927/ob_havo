@@ -15,28 +15,31 @@ class _HomeScreenState extends State<HomeScreen> {
   String searchText = 'search';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder<UniversalData>(
-        future: ApiProvider.getMainWeatherDataByQuery(query: "Tashkent"),
-        builder: (BuildContext context, AsyncSnapshot<UniversalData> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasData) {
-            if (snapshot.data!.error.isEmpty) {
-              WeatherMainModel weatherMainModel =
-                  snapshot.data!.data as WeatherMainModel;
-              return HomeMain(
-                weatherMainModel: weatherMainModel,
+    return SafeArea(
+      child: Scaffold(
+        body: FutureBuilder<UniversalData>(
+          future: ApiProvider.getMainWeatherDataByQuery(query: "Tashkent"),
+          builder:
+              (BuildContext context, AsyncSnapshot<UniversalData> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
+            } else if (snapshot.hasData) {
+              if (snapshot.data!.error.isEmpty) {
+                WeatherMainModel weatherMainModel =
+                    snapshot.data!.data as WeatherMainModel;
+                return HomeMain(
+                  weatherMainModel: weatherMainModel,
+                );
+              }
             }
-          }
 
-          return Center(
-            child: Text(snapshot.error.toString()),
-          );
-        },
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
+          },
+        ),
       ),
     );
   }
