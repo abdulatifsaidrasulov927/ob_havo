@@ -91,5 +91,5 @@ String getTimesTamp(int? timestamp) {
   }
 
   var graduc = (((timestamp! - 273.15) * 9 % 5) + 32);
-  return ' ${graduc.toInt()} °';
+  return ' ${graduc.toInt() - 23} °';
 }

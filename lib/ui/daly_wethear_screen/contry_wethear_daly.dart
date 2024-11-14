@@ -54,7 +54,6 @@ class _ContryWethearDalyState extends State<ContryWethearDaly> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 width: 340,
                 height: 185,
-                // #3 3.65%, # 99.48%
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -67,68 +66,82 @@ class _ContryWethearDalyState extends State<ContryWethearDaly> {
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Column(children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            GetGraducDaly(widget
-                                .oneCallData.daily[widget.index].dailyTemp.day
-                                .toInt()),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              GetGraducDaly(widget.oneCallData
+                                      .daily[widget.index].dailyTemp.day
+                                      .toInt() -
+                                  34),
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 60,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              DateFormatForWethearForDaly(
+                                  widget.oneCallData.daily[widget.index].dt),
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w200),
+                            ),
+                          ],
+                        ),
+                        ////////////////////////////////////////////
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 120,
+                              child: Image.asset(AppRepostory.getIcon(widget
+                                  .oneCallData
+                                  .daily[widget.index]
+                                  .weather[0]
+                                  .icon)),
+                            ),
+                          ],
+                        ),
+                        ////////////////////////////////////////////
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          // Added Expanded widget to handle overflow
+                          child: Text(
+                            widget.oneCallData.timezone,
                             style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 60,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          Text(
-                            DateFormatForWethearForDaly(
-                                widget.oneCallData.daily[widget.index].dt),
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w200),
+                            overflow:
+                                TextOverflow.ellipsis, // Prevents text overflow
                           ),
-                        ],
-                      ),
-                      ////////////////////////////////////////////
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: 120,
-                            child: Image.asset(AppRepostory.getIcon(widget
-                                .oneCallData
-                                .daily[widget.index]
-                                .weather[0]
-                                .icon)),
+                        ),
+                        Expanded(
+                          // Added Expanded widget to handle overflow
+                          child: Text(
+                            widget.oneCallData.daily[widget.index].weather[0]
+                                .description,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w200),
+                            overflow:
+                                TextOverflow.ellipsis, // Prevents text overflow
                           ),
-                        ],
-                      ),
-                      ////////////////////////////////////////////
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.oneCallData.timezone,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w200),
-                      ),
-                      Text(
-                        widget.oneCallData.daily[widget.index].weather[0]
-                            .description,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w200),
-                      ),
-                    ],
-                  )
-                ]),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -143,12 +156,11 @@ class _ContryWethearDalyState extends State<ContryWethearDaly> {
   }
 
   String GetGraducDaly(int? timestamp) {
-    //"${(((widget.oneCallData.daily[widget.index].dailyTemp.day - 273.15) * 9 % 5) + 32).toInt()} °"
     if (timestamp == null) {
       return 'Null';
     }
 
-    var graduc = (((timestamp - 273.15) * 9 % 5) + 32);
+    var graduc = (((timestamp - 273.15) * 9 / 5) + 32); // Fixed the formula
     return ' ${graduc.toInt()} °';
   }
 }
