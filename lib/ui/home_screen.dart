@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:n8_default_project/utils/icons.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:n8_default_project/data/models/main/weather_main_model.dart';
@@ -123,9 +124,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                   weatherMainModel: weatherMainModel);
                             } else {
                               return Center(
-                                child: Text(
-                                  "Error: ${snapshot.data!.error}",
-                                  style: const TextStyle(color: Colors.red),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Error: ${snapshot.data!.error}",
+                                      style: const TextStyle(
+                                          color: Colors.red, fontSize: 18),
+                                    ),
+                                    const SizedBox(height: 20),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        // Appni qayta ishga tushirish uchun
+                                        SystemChannels.platform.invokeMethod(
+                                            'SystemNavigator.pop');
+                                      },
+                                      child: const Text('Qayta ochish'),
+                                    ),
+                                  ],
                                 ),
                               );
                             }

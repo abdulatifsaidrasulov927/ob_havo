@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:n8_default_project/data/models/main/weather_main_model.dart';
 import 'package:n8_default_project/ui/daly_wethear_screen/daly_wethear_screen.dart';
-import 'package:n8_default_project/utils/icons.dart';
 
 class HomeMain extends StatefulWidget {
   const HomeMain({Key? key, required this.weatherMainModel}) : super(key: key);
@@ -70,7 +69,7 @@ class _HomeMainState extends State<HomeMain> {
                     fontWeight: FontWeight.w300),
               ),
               Text(
-                "${(((widget.weatherMainModel.mainInMain.temp - 273.15) * 9 % 5) + 32).toInt()} °",
+                "${(((widget.weatherMainModel.mainInMain.temp! - 273.15) * 9 % 5) + 32).toInt()} °",
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 80,
