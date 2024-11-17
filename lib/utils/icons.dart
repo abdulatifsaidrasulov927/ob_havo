@@ -1,7 +1,6 @@
 class AppImages {
   //png
   static const String sky = "assets/images/sky.png";
-  static const String house = "assets/images/house.png";
   static const String sun = "assets/images/sun.png";
   static const String fewClouds = "assets/images/clear_sky.png";
   static const String brokenSky = "assets/images/clouds.png";
@@ -17,4 +16,8 @@ class AppImages {
   //scattered_thunderstorms
   //svg
   static const String react = "assets/svg/react.svg";
+
+  // emages for backgrounds
+  static const String house = "assets/images/house.png";
+  static const String registon = "assets/images/registon.png";
 }
