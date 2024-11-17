@@ -22,7 +22,6 @@ dependencies:
   location: ^5.0.0
   flutter_slidable: ^3.0.0
   shimmer: ^3.0.0
-  connectivity_plus: ^6.1.0
 
 dev_dependencies:
   flutter_test:
